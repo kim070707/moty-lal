@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An independent informational demo page about ChemoCentryx and its scientific background.">
+  <title>ChemoCentryx — Independent Information Page</title>
+  <style>
+    :root {
+      --ink: #34434b;
+      --muted: #687780;
+      --teal: #168b91;
+      --teal-dark: #106e75;
+      --pale: #eef7f7;
+      --line: #dce7e8;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+    .notice {
+      padding: 9px 20px;
+      background: #f4f6f7;
+      color: #52616a;
+      text-align: center;
+      font-size: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      max-width: 1160px;
+      margin: auto;
+      min-height: 82px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: #66747b;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
+    }
+    .brand-mark { width: 42px; height: 38px; flex: 0 0 auto; }
+    .brand small {
+      display: block;
+      margin-top: -3px;
+      color: #849198;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 2.2px;
+    }
+    nav { display: flex; gap: 27px; align-items: center; }
+    nav a {
+      color: #52616a;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    nav a:hover { color: var(--teal); }
+    .hero {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 83% 22%, rgba(91,190,190,.24), transparent 27%),
+        linear-gradient(120deg, #f2f9f9 0%, #fff 60%, #eaf5f5 100%);
+    }
+    .hero-inner {
+      max-width: 1160px;
+      min-height: 490px;
+      margin: auto;
+      padding: 82px 24px 75px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 40px;
+    }
+    .eyebrow {
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 680px;
+      margin: 17px 0 18px;
+      color: #34454d;
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1.1;
+      letter-spacing: -1.8px;
+    }
+    .hero p {
+      max-width: 620px;
+      margin: 0;
+      color: #64747b;
+      font-size: 18px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn {
+      display: inline-block;
+      padding: 12px 21px;
+      border-radius: 4px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+    .btn:hover { background: var(--teal-dark); transform: translateY(-1px); }
+    .btn.secondary {
+      color: var(--teal-dark);
+      background: transparent;
+      border: 1px solid #8bbfc1;
+    }
+    .hero-art {
+      min-height: 300px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .orbit {
+      width: min(330px, 75vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(22,139,145,.25);
+      border-radius: 50%;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .orbit:before, .orbit:after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(22,139,145,.2);
+      border-radius: 50%;
+    }
+    .orbit:before { inset: 26px; }
+    .orbit:after { inset: 58px; }
+    .core {
+      width: 116px;
+      height: 116px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(145deg, #55b8b6, #167f87);
+      box-shadow: 0 15px 45px rgba(22,139,145,.25);
+      font-size: 36px;
+    }
+    .dot {
+      position: absolute;
+      width: 15px; height: 15px;
+      border-radius: 50%;
+      background: #72c4c0;
+      box-shadow: 0 0 0 8px rgba(114,196,192,.13);
+    }
+    .d1 { top: 32px; left: 82px; }
+    .d2 { right: 26px; top: 118px; width: 11px; height: 11px; }
+    .d3 { bottom: 42px; left: 52px; width: 12px; height: 12px; }
+    section { padding: 76px 24px; }
+    .container { max-width: 1100px; margin: auto; }
+    .section-head { max-width: 700px; margin: 0 auto 38px; text-align: center; }
+    .section-head h2 { margin: 8px 0 12px; font-size: 34px; line-height: 1.2; }
+    .section-head p { margin: 0; color: var(--muted); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 8px 25px rgba(40,70,75,.04);
+    }
+    .card-icon {
+      width: 45px; height: 45px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      color: var(--teal-dark);
+      background: var(--pale);
+      font-size: 21px;
+    }
+    .card h3 { margin: 18px 0 8px; font-size: 19px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .about { background: #f5f9f9; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 55px;
+      align-items: center;
+    }
+    .about-panel {
+      min-height: 280px;
+      padding: 34px;
+      border-radius: 8px;
+      color: white;
+      background: linear-gradient(145deg, #176f78, #36a5a3);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .about-panel strong { font-size: 28px; line-height: 1.2; }
+    .about-panel span { margin-top: 10px; opacity: .85; font-size: 13px; }
+    .about-copy h2 { margin: 0 0 14px; font-size: 32px; line-height: 1.2; }
+    .about-copy p { color: var(--muted); }
+    .link-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .link-list a {
+      color: var(--teal-dark);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid #9ac8c8;
+    }
+    .disclaimer {
+      margin-top: 25px;
+      padding: 15px 17px;
+      border-left: 3px solid #d1a34c;
+      background: #fffaf0;
+      color: #71664f;
+      font-size: 12px;
+    }
+    footer { padding: 30px 24px; background: #30434b; color: #dce6e8; }
+    .footer-inner {
+      max-width: 1100px; margin: auto;
+      display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+      font-size: 12px;
+    }
+    footer a { color: #c1e4e3; text-decoration: none; }
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; flex-direction: column; gap: 12px; }
+      nav { gap: 17px; flex-wrap: wrap; }
+      .hero-inner { grid-template-columns: 1fr; padding-top: 60px; }
+      .hero-art { min-height: 240px; }
+      .orbit { width: 235px; }
+      .cards { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      section { padding: 58px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="notice">
+    Independent informational demo — not the official ChemoCentryx or Amgen website.
+  </div>
+
+  <header>
+    <div class="nav">
+      <a class="brand" href="#home" aria-label="ChemoCentryx demo home">
+        <svg class="brand-mark" viewBox="0 0 64 54" role="img" aria-label="Abstract teal logo symbol">
+          <path d="M5 43 C17 37 20 16 34 10 C43 6 49 12 58 3 C55 18 49 23 38 24 C26 25 22 43 5 43Z" fill="#9aa5a8"/>
+          <path d="M8 49 C22 44 27 31 39 29 C47 27 53 31 60 25 C55 39 45 43 35 40 C24 38 19 49 8 49Z" fill="#168b91"/>
+        </svg>
+        <span>CHEMOCENTRYX<small>INDEPENDENT INFORMATION PAGE</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#science">Science</a>
+        <a href="#about">About</a>
+        <a href="#resources">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Science • Research • Discovery</div>
+          <h1>Exploring the science of targeted therapies.</h1>
+          <p>
+            An independent overview of ChemoCentryx’s scientific history and its
+            work in research focused on inflammatory and autoimmune conditions.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#science">Explore the science</a>
+            <a class="btn secondary" href="#resources">View resources</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit">
+            <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+            <div class="core">✧</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="science">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Research approach</div>
+          <h2>Understanding complex biology</h2>
+          <p>
+            ChemoCentryx historically focused on chemoattractant pathways and
+            small-molecule medicines being investigated for serious diseases.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">⌘</div>
+            <h3>Targeted pathways</h3>
+            <p>Research centered on chemokine and chemoattractant receptors involved in directing immune-cell activity.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">◎</div>
+            <h3>Inflammatory disease</h3>
+            <p>The company’s historical research included inflammatory and autoimmune disorders, including rare diseases.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">＋</div>
+            <h3>Therapeutic research</h3>
+            <p>Its development work included orally administered small-molecule therapeutic candidates.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <strong>Research built around a deeper understanding of biology.</strong>
+          <span>ChemoCentryx — company background</span>
+        </div>
+        <div class="about-copy">
+          <div class="eyebrow">Company background</div>
+          <h2>About ChemoCentryx</h2>
+          <p>
+            ChemoCentryx was a biopharmaceutical company founded in 1997. Its
+            research and development activities focused on medicines for
+            inflammatory diseases, autoimmune conditions and cancer.
+          </p>
+          <p>
+            Amgen completed its acquisition of ChemoCentryx in October 2022.
+            This page is an independent educational overview and is not
+            maintained by either company.
+          </p>
+          <div class="disclaimer">
+            This page is not a medical resource and does not provide medical
+            advice, diagnosis, treatment recommendations, or product claims.
+            For current company information, consult Amgen’s official website.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Further reading</div>
+          <h2>Official information</h2>
+          <p>Use these external sources for authoritative company and historical information.</p>
+          <div class="link-list" style="justify-content:center">
+            <a href="https://www.amgen.com/" target="_blank" rel="noopener noreferrer">Amgen official website ↗</a>
+            <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noopener noreferrer">SEC company filings ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Independent ChemoCentryx Information Demo</span>
+      <span>Not affiliated with, endorsed by, or operated by ChemoCentryx or Amgen.</span>
+    </div>
+  </footer>
+</body>
+</html>
